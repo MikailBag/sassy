@@ -35,7 +35,10 @@ var sassy = (function () {
 
     sassy = {
         compile: compile,
-        uncomment: uncomment
+        uncomment: uncomment,
+        utils:{
+            cut:cut
+        }
     };
     return sassy;
 
