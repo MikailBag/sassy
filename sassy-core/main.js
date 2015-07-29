@@ -2,20 +2,19 @@ var sassy = (function () {
     var sassy;
     var integrator={
         import:function(url){
-            var script= document.createElement('script');
-            script.src=url;
-            document.head.appendChild(script)
+           return require(url)
         }
     };
-    integrator.import('som.js');
-    integrator.import('parser.js');
+
+    var parser=integrator.import('./parser.js');
 
 
 
     function cut(str, startPos, endPos) {
         //console.log('cutting str ' + str);
         var chars = str.split('');
-        console.log('cutted substr ' + chars.splice(startPos, endPos - startPos + 2));
+        var cutted=chars.splice(startPos, endPos - startPos + 2);
+        //console.log('cutted substr ' + cutted);
         return chars.join('')
 
 
@@ -27,7 +26,7 @@ var sassy = (function () {
 
         while (index != -1) {
             var endIndex = str.indexOf('*/', index);
-            console.log('multiline found;\nstart index: ' + index + ' end index: ' + endIndex);
+            //console.log('multiline found;\nstart index: ' + index + ' end index: ' + endIndex);
             str = cut(str, index, endIndex);
             index = str.indexOf('/*');
         }
@@ -52,8 +51,7 @@ var sassy = (function () {
         utils: {
             cut: cut,
             integrator:integrator
-        },
-        parse:parse
+        }
     };
     return sassy;
 
@@ -61,8 +59,8 @@ var sassy = (function () {
 })();
 
 
-console.log('sassy core included //');
-console.log(
+//console.log('sassy core included //');
+//console.log(
     sassy.compile('text' +
         '\n//comment' +
         '\n//comment' +
@@ -70,4 +68,4 @@ console.log(
         '\n/*multiline comment must be deleted' +
         'fully*/' +
         '\n*!but this-no, it\'s important*/' +
-        '\ntext'));
+        '\ntext');//);
