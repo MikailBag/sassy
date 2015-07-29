@@ -10,7 +10,6 @@ describe('parser',function(){
         expect(parser).toBeTruthy();
     })
 });
-
 describe('sass-o-m',function(){
     it('availible',function(){
         expect(som).toBeTruthy();
