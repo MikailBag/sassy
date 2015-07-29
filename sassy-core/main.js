@@ -1,5 +1,16 @@
 var sassy = (function () {
     var sassy;
+    var integrator={
+        import:function(url){
+            var script= document.createElement('script');
+            script.src=url;
+            document.head.appendChild(script)
+        }
+    };
+    integrator.import('som.js');
+    integrator.import('parser.js');
+
+
 
     function cut(str, startPos, endPos) {
         //console.log('cutting str ' + str);
@@ -24,6 +35,10 @@ var sassy = (function () {
         return str;
     }
 
+
+
+
+
     function compile(str/*, output*/) {
         //console.log(str);
         str = str.replace(/\/\/.*/gm, '');// deleting // comments
@@ -35,8 +50,10 @@ var sassy = (function () {
         compile: compile,
         uncomment: uncomment,
         utils: {
-            cut: cut
-        }
+            cut: cut,
+            integrator:integrator
+        },
+        parse:parse
     };
     return sassy;
 

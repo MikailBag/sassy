@@ -6,6 +6,7 @@ QUnit.test("hello test", function (assert) {
 QUnit.test('api is availible', function (assert) {
     assert.ok(sassy.compile, 'Compiler availible');
     assert.ok(sassy.uncomment, 'Comment clean system');
+    assert.ok(sassy.utils.integrator && sassy.utils.integrator.import, 'integrator availible')
 });
 
 QUnit.test('Comment clean system', function (assert) {
