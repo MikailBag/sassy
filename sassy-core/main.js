@@ -2,7 +2,7 @@ var sassy = (function () {
     var sassy;
 
     function cut(str, startPos, endPos) {
-        console.log('cutting str ' + str);
+        //console.log('cutting str ' + str);
         var chars = str.split('');
         console.log('cutted substr ' + chars.splice(startPos, endPos - startPos + 2));
         return chars.join('')
@@ -14,13 +14,11 @@ var sassy = (function () {
         str = str.replace(/\/\/.*/gm, '');// deleting // comments
         var index = str.indexOf('/*');
 
-
-        if (index == -1) {
-            console.log('no multiline');
-        } else {
+        while (index != -1) {
             var endIndex = str.indexOf('*/', index);
             console.log('multiline found;\nstart index: ' + index + ' end index: ' + endIndex);
             str = cut(str, index, endIndex);
+            index = str.indexOf('/*');
         }
 
         return str;
@@ -36,8 +34,8 @@ var sassy = (function () {
     sassy = {
         compile: compile,
         uncomment: uncomment,
-        utils:{
-            cut:cut
+        utils: {
+            cut: cut
         }
     };
     return sassy;
